@@ -60,8 +60,8 @@ ReplicatedStrategy.prototype.authenticate = function ReplicatedStrategyAuthentic
 
   function verified (err, user, info) {
     if (err) {
-      debug('error', err)
-      return self.error(err)
+      debug('error', err)      
+      return self.error(err.message || err)
     }
 
     if (!user) {
