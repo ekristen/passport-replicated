@@ -1,6 +1,7 @@
 var debug = require('debug')('passport:strategy:replicated')
 var passport = require('passport-strategy')
 var util = require('util')
+var xtend = require('xtend')
 var request = require('superagent')
 
 function lookup (obj, field) {
@@ -27,6 +28,11 @@ function ReplicatedStrategy (options, verify) {
     options = {}
   }
 
+  options = xtend({
+    url: process.env.REPLICATED_INTEGRATIONAPI,
+    path: '/identity/v1/login'
+  }, options)
+
   if (!verify) {
     throw new Error('Replicated Identity authentication strategy requires a verify function')
   }
@@ -37,6 +43,7 @@ function ReplicatedStrategy (options, verify) {
   passport.Strategy.call(this)
   this.name = 'replicated'
   this._verify = verify
+  this._options = options
 }
 util.inherits(ReplicatedStrategy, passport.Strategy)
 
@@ -67,14 +74,14 @@ ReplicatedStrategy.prototype.authenticate = function ReplicatedStrategyAuthentic
   }
 
   request
-    .post(process.env.REPLICATED_INTEGRATIONAPI + '/identity/v1/login')
+    .post(self._options.url + self._options.path)
     .send({
       username: username,
       password: password
     })
     .end(function (err, res) {
       if (err) {
-        console.log(err)
+        debug('request error', err)
         return self.error(err)
       }
 

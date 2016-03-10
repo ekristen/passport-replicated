@@ -40,12 +40,14 @@ passport.use(new ReplicatedStrategy({
 
 ### Available Options
 
-This strategy takes an optional options hash before the function, e.g. `new LocalStrategy({/* options */, callback})`.
+This strategy takes an optional options hash before the function, e.g. `new ReplicatedStrategy({/* options */, callback})`.
 
 The available options are:
 
 * `usernameField` - Optional, defaults to 'username'
 * `passwordField` - Optional, defaults to 'password'
+* `url` - Optional, defaults to the value of `process.env.REPLICATED_INTEGRATIONAPI`
+* `path` - Optional, defaults to `/identity/v1/login`
 
 Both fields define the name of the properties in the POST body that are sent to the server.
 
@@ -72,7 +74,7 @@ The verify callback can be supplied with the `request` object by setting
 the `passReqToCallback` option to true, and changing callback arguments
 accordingly.
 
-    passport.use(new LocalStrategy({
+    passport.use(new ReplicatedStrategy({
         usernameField: 'email',
         passwordField: 'passwd',
         passReqToCallback: true,
@@ -86,7 +88,7 @@ accordingly.
 
 ### Authenticate Requests
 
-Use `passport.authenticate()`, specifying the `'local'` strategy, to
+Use `passport.authenticate()`, specifying the `'replicated'` strategy, to
 authenticate requests.
 
 For example, as route middleware in an [Express](http://expressjs.com/)
