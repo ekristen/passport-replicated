@@ -1,6 +1,6 @@
 # passport-replicated
 
-[![Build](https://travis-ci.org/ekristen/passport-replicaetd.png)](https://travis-ci.org/jaredhanson/passport-replicated)
+[![Build](https://travis-ci.org/ekristen/passport-replicaetd.png)](https://travis-ci.org/ekristen/passport-replicated)
 [![Dependencies](https://david-dm.org/ekristen/passport-replicated.png)](https://david-dm.org/ekristen/passport-replicated)
 
 [Passport](http://passportjs.org/) strategy for authenticating with the [Replicated](http://www.replicated.com) [Identity API](http://docs.replicated.com/v1.0/docs/identity-api)
