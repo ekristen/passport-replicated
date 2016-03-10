@@ -1,6 +1,6 @@
 {
   "name": "passport-replicated",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Passport Strategy for Replicated Identity API",
   "main": "replicated.js",
   "author": "Erik Kristensen <erik@erikkristensen.com>",

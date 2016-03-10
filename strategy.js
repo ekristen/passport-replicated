@@ -61,7 +61,7 @@ ReplicatedStrategy.prototype.authenticate = function ReplicatedStrategyAuthentic
   function verified (err, user, info) {
     if (err) {
       debug('error', err)      
-      return self.error(err.message || err)
+      return self.error(err)
     }
 
     if (!user) {
@@ -82,7 +82,7 @@ ReplicatedStrategy.prototype.authenticate = function ReplicatedStrategyAuthentic
     .end(function (err, res) {
       if (err) {
         debug('request error', err)
-        return self.error(err)
+        return self.error(err.message || err)
       }
 
       if (self._passReqToCallback) {
